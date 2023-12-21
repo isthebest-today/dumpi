@@ -1,0 +1,141 @@
+<html>
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        color: #fff;
+        font-family: "Atkinson Hyperlegible", sans-serif;
+        font-size: 2rem;
+        text-align: center;
+        background: black;
+        background-image: radial-gradient(white 1px, transparent 0);
+        background-size: 40px 40px;
+        background-position: -19px -19px;
+      }
+      #container {
+        background: white;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-direction: column;
+      }
+      .text {
+        color: black;
+        font-size: 2rem;
+        padding: 1rem;
+      }
+      #img {
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 800px;
+        width: 800px;
+      }
+    </style>
+    <script src="./animated-string.js"></script>
+  </head>
+  <body>
+    <script>
+      const getRandom = (arr) => arr[Math.floor(Math.random() * arr.length)];
+
+      const allQuotes = [
+        ["Dumpi, you must be a beaver,", "because damn!"],
+        ["Dumpi, are you a cookie?", "...because dough!"],
+        ["Dumpi, you're so sweet...", "you're giving me a toothache."],
+        ["Dumpi, on a scale of 1 to 10", "you're an 11."],
+        ["Dumpi, if you were a vegetable...", "you'd be a cute-cumber."],
+        [
+          "Dumpi, you're so precious...",
+          "I could bottle you up and sell you as a parfume.",
+        ],
+        ["Dumpi, I bet you do crossword puzzles in ink."],
+        [
+          "Dumpi, you're so cute that...",
+          "puppies and kittens send pictures of you to each other.",
+        ],
+        [
+          "Dumpi, are you a WiFi signal?",
+          "...because I'm feeling a strong connection.",
+        ],
+        ["Dumpi, do you have a map?", "I keep getting lost in your eyes."],
+        [
+          "I love it when I can turn you, into my favorite superhero:",
+          "SuperMad!",
+        ],
+        [
+          "Did you sit in a pile of sugar, Dumpi?",
+          "Cause you have a pretty sweet ass!",
+        ],
+        ["If you were words on a page, Dumpi...", "you'd be fine print."],
+        ["Are you a banana, Dumpi?", "Because I find you a-peeling."],
+        [
+          "Was your Dad a baker, Dumpi?",
+          "Because you've got a nice set of buns.",
+        ],
+        ["If you were a library book, Dumpi...", "I would check you out."],
+        ["If you were a steak, Dumpi...", "you would definitely be well done."],
+        ["Dumpi, you're so hot...", "that when I look at you, I get a tan!"],
+        ["You're so hot, Dumpi...", "that you eat bread and poop toast."],
+        ["Dumpi, you could never be ice cream...", "because you're so hot."],
+      ];
+      const quote = getRandom(allQuotes);
+
+      const getRandomImage = () =>
+        getRandom(
+          Array.from({ length: 20 }).map((el, i) => `/img/${i + 1}.png`)
+        );
+
+      const displayRandomImage = () => {
+        document.querySelector(
+          "#img"
+        ).style.backgroundImage = `url(${getRandomImage()})`;
+      };
+
+      const animateImage = (step = 30, duration = 60) => {
+        if (step === 0) {
+          return;
+        }
+        const newDuration = duration * 1;
+        setTimeout(() => {
+          displayRandomImage();
+          animateImage(step - 1, duration);
+        }, duration);
+      };
+
+      animateImage();
+      document.write(
+        `<div id="container">
+          <div class="text"><animated-string string="${
+            quote[0]
+          }"></animated-string></div>
+          <div id="img"></div>
+          ${
+            quote[1]
+              ? `<div class="text"><animated-string string="${quote[1]}"></animated-string></div>`
+              : ""
+          }
+        </div>`
+      );
+    </script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-DJ9LYB3E8S"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-DJ9LYB3E8S");
+    </script>
+  </body>
+</html>
